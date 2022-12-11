@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ActorComponent } from './actor/actor.component';
+import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
+import { FilmCastComponent } from './film-cast/film-cast.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,19 @@ const routes: Routes = [
     path: 'setting-management',
     loadChildren: () =>
       import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
+  },
+  { path: 'films', loadChildren: () => import('./film/film.module').then(m => m.FilmModule) },
+  {
+    path: 'actors',
+    component: ActorComponent,
+  },
+  {
+    path: 'film-review',
+    component: FilmReviewsComponent,
+  },
+  {
+    path: 'film-cast',
+    component: FilmCastComponent,
   },
 ];
 

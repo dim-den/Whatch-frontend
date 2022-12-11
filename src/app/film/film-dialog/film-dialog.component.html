@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>{{ (data ? 'Edit' : 'Create' )| abpLocalization }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="form-container">
+    <mat-form-field class="w-100">
+      <mat-label>{{'Title' | abpLocalization}} </mat-label>
+      <input type="text" id="film-title" matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Description' | abpLocalization}} </mat-label>
+      <input type="text" id="genre-description" matInput formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Director' | abpLocalization}} </mat-label>
+      <input type="text" id="genre-director" matInput formControlName="director">
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Budget' | abpLocalization}} </mat-label>
+      <input type="number" id="genre-budget" matInput formControlName="budget">
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Fees' | abpLocalization}} </mat-label>
+      <input type="number" id="genre-fees" matInput formControlName="fees">
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Country' | abpLocalization}} </mat-label>
+      <input type="text" id="genre-country" matInput formControlName="country">
+    </mat-form-field>
+
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'ReleaseDate' | abpLocalization}} </mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="releaseDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Genre' | abpLocalization}}</mat-label>
+      <mat-select id="film-genre" formControlName="genre">
+        <mat-option [value]="type.value" *ngFor="let type of filmGenres">{{ type.key }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Trailer Url' | abpLocalization}} </mat-label>
+      <input type="text" id="genre-trailerUrl" matInput formControlName="trailerUrl">
+    </mat-form-field>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button  mat-dialog-close>{{ 'Close' | abpLocalization }}</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]='form.invalid || !form.touched'> {{'Save' | abpLocalization}}</button>
+</mat-dialog-actions>

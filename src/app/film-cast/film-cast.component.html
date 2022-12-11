@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-header class="w-100">
+    <mat-card-title-group class="w-100">
+      <mat-card-title class="abp-card-title">{{ 'Film Casts' }}</mat-card-title>
+      <button id="create" mat-raised-button color="primary" type="button" (click)="createFilmCast()">
+        <i class="fa fa-plus mr-1"></i>
+        <span>{{ " New Film Cast" }}</span>
+      </button>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="filmCasts.items" class="w-100" matSort>
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: columns"></tr>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> {{'Actions'}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" [matMenuTriggerFor]="menu" [matMenuTriggerData]="{id: element.id}">
+            <mat-icon>settings</mat-icon>
+            {{'Actions'}}
+            <mat-icon>expand_more</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="roleName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Role name'}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.roleName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="filmId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Film'}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.filmId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actorId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Actor'}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.actorId}} </td>
+      </ng-container>
+    </table>
+    <mat-paginator [length]="filmCasts.totalCount" [pageSize]="list.maxResultCount" (page)="changePage($event)"></mat-paginator>
+  </mat-card-content>
+</mat-card>
+<mat-menu #menu="matMenu">
+  <ng-template matMenuContent let-id="id">
+    <button mat-menu-item (click)="editFilmCast(id)">
+      {{ 'Edit' }}
+    </button>
+    <button mat-menu-item (click)="deleteFilmCast(id)">
+      {{ 'Delete' }}
+    </button>
+  </ng-template>
+
+</mat-menu>

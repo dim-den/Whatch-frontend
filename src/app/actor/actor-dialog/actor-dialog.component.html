@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{ (data ? 'Edit' : 'Create' )| abpLocalization }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="form-container">
+    <mat-form-field class="w-100">
+      <mat-label>{{'Name' | abpLocalization}} </mat-label>
+      <input type="text" id="film-title" matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Lastname' | abpLocalization}} </mat-label>
+      <input type="text" id="genre-description" matInput formControlName="lastname">
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Country' | abpLocalization}} </mat-label>
+      <input type="text" id="genre-director" matInput formControlName="country">
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Birthday' | abpLocalization}} </mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthday">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button  mat-dialog-close>{{ 'Close' | abpLocalization }}</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]='form.invalid || !form.touched'> {{'Save' | abpLocalization}}</button>
+</mat-dialog-actions>

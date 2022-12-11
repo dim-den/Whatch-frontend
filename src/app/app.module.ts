@@ -14,6 +14,13 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
+import { ActorComponent } from './actor/actor.component';
+import { ActorDialogComponent } from './actor/actor-dialog/actor-dialog.component';
+import { SharedModule } from './shared/shared.module';
+import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
+import { FilmReviewsDialogComponent } from './film-reviews/film-reviews-dialog/film-reviews-dialog.component';
+import { FilmCastComponent } from './film-cast/film-cast.component';
+import { FilmCastDialogComponent } from './film-cast/film-cast-dialog/film-cast-dialog.component';
 
 @NgModule({
   imports: [
@@ -31,8 +38,17 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
     SettingManagementConfigModule.forRoot(),
     ThemeLeptonXModule.forRoot(),
     SideMenuLayoutModule.forRoot(),
+    SharedModule,
   ],
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    ActorComponent,
+    ActorDialogComponent,
+    FilmReviewsComponent,
+    FilmReviewsDialogComponent,
+    FilmCastComponent,
+    FilmCastDialogComponent,
+  ],
   providers: [APP_ROUTE_PROVIDER],
   bootstrap: [AppComponent],
 })

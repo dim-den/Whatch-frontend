@@ -21,11 +21,13 @@
     "@abp/ng.theme.lepton-x": "^1.0.0",
     "@abp/ng.theme.shared": "~6.0.1",
     "@angular/animations": "^14.2.1",
+    "@angular/cdk": "^14.2.7",
     "@angular/common": "^14.2.1",
     "@angular/compiler": "^14.2.1",
     "@angular/core": "^14.2.1",
     "@angular/forms": "^14.2.1",
     "@angular/localize": "^14.2.1",
+    "@angular/material": "^14.2.7",
     "@angular/platform-browser": "^14.2.1",
     "@angular/platform-browser-dynamic": "^14.2.1",
     "@angular/router": "^14.2.1",
@@ -57,6 +59,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.7.0",
     "ng-packagr": "^14.2.1",
+    "prettier": "2.8.1",
     "typescript": "~4.8.3"
   }
 }

@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>{{ (data ? 'Edit' : 'Create')  }}</h2>
+<mat-dialog-content>
+  <form [formGroup]='form' class='form-container'>
+    <mat-form-field class='w-100'>
+      <mat-label>{{'Role name' }} </mat-label>
+      <input type='text' id='film-title' matInput formControlName='roleName'>
+    </mat-form-field>
+
+    <mat-form-field class='w-100'>
+      <mat-label>{{'Film' }}</mat-label>
+      <mat-select id='author-id' formControlName='filmId' autofocus>
+        <mat-option [value]='film.id' *ngFor='let film of films$ | async'>{{ film.title }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class='w-100'>
+      <mat-label>{{'Actor' }}</mat-label>
+      <mat-select id='user-id' formControlName='actorId' autofocus>
+        <mat-option [value]='actor.id' *ngFor='let actor of actors$ | async'>{{ actor.name + ' ' + actor.lastname }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>{{ 'Close'  }}</button>
+  <button mat-raised-button color='primary' [mat-dialog-close]='form.value'
+          [disabled]='form.invalid || !form.touched'> {{'Save' }}</button>
+</mat-dialog-actions>

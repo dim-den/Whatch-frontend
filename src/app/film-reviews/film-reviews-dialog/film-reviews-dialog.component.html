@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>{{ (data ? 'Edit' : 'Create')  }}</h2>
+<mat-dialog-content>
+  <form [formGroup]='form' class='form-container'>
+    <mat-form-field class='w-100'>
+      <mat-label>{{'Score' }} </mat-label>
+      <input type='number' id='film-title' matInput formControlName='score'>
+    </mat-form-field>
+
+    <mat-form-field class='w-100'>
+      <mat-label>{{'Review' }} </mat-label>
+      <input type='text' id='genre-description' matInput formControlName='review'>
+    </mat-form-field>
+
+    <mat-form-field class='w-100'>
+      <mat-label>{{'Film' }}</mat-label>
+      <mat-select id='author-id' formControlName='filmId' autofocus>
+        <mat-option [value]='film.id' *ngFor='let film of films$ | async'>{{ film.title }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class='w-100'>
+      <mat-label>{{'User' }}</mat-label>
+      <mat-select id='user-id' formControlName='userId' autofocus>
+        <mat-option [value]='user.id' *ngFor='let user of users$ | async'>{{ user.userName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>{{ 'Close'  }}</button>
+  <button mat-raised-button color='primary' [mat-dialog-close]='form.value'
+          [disabled]='form.invalid || !form.touched'> {{'Save' }}</button>
+</mat-dialog-actions>

@@ -15,6 +15,36 @@ function configureRoutes(routesService: RoutesService) {
         order: 1,
         layout: eLayoutType.application,
       },
+      {
+        name: 'WhatchStructure',
+        iconClass: 'fas fa-book',
+        order: 2,
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/films',
+        name: 'Films',
+        parentName: 'WhatchStructure',
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/actors',
+        name: 'Actors',
+        parentName: 'WhatchStructure',
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/film-review',
+        name: 'Reviews',
+        parentName: 'WhatchStructure',
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/film-cast',
+        name: 'Casts',
+        parentName: 'WhatchStructure',
+        layout: eLayoutType.application,
+      },
     ]);
   };
 }
