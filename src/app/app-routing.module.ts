@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ActorComponent } from './actor/actor.component';
 import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
 import { FilmCastComponent } from './film-cast/film-cast.component';
+import { AuthGuard, PermissionGuard } from '@abp/ng.core';
 
 const routes: Routes = [
   {
@@ -32,14 +33,17 @@ const routes: Routes = [
   {
     path: 'actors',
     component: ActorComponent,
+    canActivate: [AuthGuard, PermissionGuard],
   },
   {
     path: 'film-review',
     component: FilmReviewsComponent,
+    canActivate: [AuthGuard, PermissionGuard],
   },
   {
     path: 'film-cast',
     component: FilmCastComponent,
+    canActivate: [AuthGuard, PermissionGuard],
   },
 ];
 

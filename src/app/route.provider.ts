@@ -14,36 +14,42 @@ function configureRoutes(routesService: RoutesService) {
         iconClass: 'fas fa-home',
         order: 1,
         layout: eLayoutType.application,
+        requiredPolicy: 'Whatch.CRUD',
       },
       {
         name: 'WhatchStructure',
         iconClass: 'fas fa-book',
         order: 2,
         layout: eLayoutType.application,
+        requiredPolicy: 'Whatch.CRUD',
       },
       {
         path: '/films',
         name: 'Films',
         parentName: 'WhatchStructure',
         layout: eLayoutType.application,
+        requiredPolicy: 'Whatch.CRUD',
       },
       {
         path: '/actors',
         name: 'Actors',
         parentName: 'WhatchStructure',
         layout: eLayoutType.application,
+        requiredPolicy: 'Whatch.CRUD',
       },
       {
         path: '/film-review',
         name: 'Reviews',
         parentName: 'WhatchStructure',
         layout: eLayoutType.application,
+        requiredPolicy: 'Whatch.CRUD',
       },
       {
         path: '/film-cast',
         name: 'Casts',
         parentName: 'WhatchStructure',
         layout: eLayoutType.application,
+        requiredPolicy: 'Whatch.CRUD',
       },
     ]);
   };
