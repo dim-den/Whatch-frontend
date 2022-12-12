@@ -17,9 +17,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EmptyComponent } from './empty/empty.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    EmptyComponent
+  ],
   imports: [
     CoreModule,
     ThemeSharedModule,

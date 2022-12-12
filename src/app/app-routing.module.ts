@@ -1,9 +1,10 @@
+import { AuthGuard, PermissionGuard } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActorComponent } from './actor/actor.component';
-import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
 import { FilmCastComponent } from './film-cast/film-cast.component';
-import { AuthGuard, PermissionGuard } from '@abp/ng.core';
+import { FilmPageComponent } from './film-page/film-page.component';
+import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
     path: 'film-cast',
     component: FilmCastComponent,
     canActivate: [AuthGuard, PermissionGuard],
+  },
+  {
+    path: 'film/:filmId',
+    component: FilmPageComponent,
   },
 ];
 

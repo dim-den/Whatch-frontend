@@ -7,7 +7,9 @@ import { TenantManagementConfigModule } from '@abp/ng.tenant-management/config';
 import { ThemeLeptonXModule } from '@abp/ng.theme.lepton-x';
 import { SideMenuLayoutModule } from '@abp/ng.theme.lepton-x/layouts';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
+import { BaseUiExtensionsModule } from '@abp/ng.theme.shared/extensions';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
@@ -17,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FilmCastDialogComponent } from './film-cast/film-cast-dialog/film-cast-dialog.component';
 import { FilmCastComponent } from './film-cast/film-cast.component';
+import { FilmPageComponent } from './film-page/film-page.component';
 import { FilmReviewsDialogComponent } from './film-reviews/film-reviews-dialog/film-reviews-dialog.component';
 import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
 import { FilmSearchModule } from './film-search/film-search.module';
@@ -41,6 +44,8 @@ import { SharedModule } from './shared/shared.module';
     SideMenuLayoutModule.forRoot(),
     SharedModule,
     FilmSearchModule,
+    BaseUiExtensionsModule,
+    FlexLayoutModule,
   ],
   declarations: [
     AppComponent,
@@ -50,6 +55,7 @@ import { SharedModule } from './shared/shared.module';
     FilmReviewsDialogComponent,
     FilmCastComponent,
     FilmCastDialogComponent,
+    FilmPageComponent,
   ],
   providers: [APP_ROUTE_PROVIDER],
   bootstrap: [AppComponent],

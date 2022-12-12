@@ -1,0 +1,54 @@
+<div class='card'>
+  <div class='card-body'>
+    <div class='row'>
+
+      <div class='col-md-auto align-items-center' style='max-width: 700px'>
+        <div class='pe-0 pe-md-4'>
+          <small class='text-muted'>Film</small>
+          <h1 class='mb-1 title mb-3 mt-3'>{{film?.title}}</h1>
+          <p class='mb-3 description'>{{film?.description}}</p>
+
+          <div fxLayout='column' class='description' fxLayoutGap='15px'>
+            <div fxLayout='row' fxLayoutAlign='space-between end'>
+              <mat-label fxFlex class='text-decoration-underline'>Director</mat-label>
+              <span fxFlex>{{film?.director}}</span>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+              <mat-label fxFlex class='text-decoration-underline'>Budget</mat-label>
+              <span fxFlex>{{film?.budget | number: '2.'}}$</span>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+              <mat-label fxFlex class='text-decoration-underline'>Fees</mat-label>
+              <span fxFlex>{{film?.fees | number: '2.'}}$</span>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+              <mat-label fxFlex class='text-decoration-underline'>Release Date</mat-label>
+              <span fxFlex>{{film?.releaseDate | date: 'dd.MM.YYYY'}}</span>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+              <mat-label fxFlex class='text-decoration-underline'>Country</mat-label>
+              <span fxFlex>{{film?.country}}</span>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+              <mat-label fxFlex class='text-decoration-underline'>Genre</mat-label>
+              <span fxFlex>{{getGenreName(film?.genre)}}</span>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class='col-md d-flex text-center'>
+        <iframe class='w-100 mb-5 my-md-3' width='800' height='450'
+                [src]='trailerUrl()'>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
