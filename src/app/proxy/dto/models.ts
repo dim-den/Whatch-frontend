@@ -1,5 +1,6 @@
-import type { AuditedEntityDto, EntityDto } from '@abp/ng.core';
+import type { AuditedEntityDto, EntityDto, PagedAndSortedResultRequestDto } from '@abp/ng.core';
 import type { FilmGenre } from '../enums/film-genre.enum';
+import type { FilmFilterType } from '../enums/film-filter-type.enum';
 
 export interface ActorDto extends EntityDto<number> {
   name?: string;
@@ -16,7 +17,7 @@ export interface CreateUpdateActorDto {
 }
 
 export interface CreateUpdateFilmCastDto {
-  roleName?: string;
+  roleName: string;
   filmId: number;
   actorId: number;
 }
@@ -27,7 +28,7 @@ export interface CreateUpdateFilmDto {
   director?: string;
   budget: number;
   fees: number;
-  realeaseDate: string;
+  releaseDate: string;
   country: string;
   genre: FilmGenre;
   trailerUrl?: string;
@@ -63,4 +64,9 @@ export interface LeaveReviewDto {
   userId: string;
   score: number;
   review?: string;
+}
+
+export interface SearchFilmDto extends PagedAndSortedResultRequestDto {
+  key: string;
+  filterBy: FilmFilterType;
 }

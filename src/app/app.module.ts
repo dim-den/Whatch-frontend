@@ -11,16 +11,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
+import { ActorDialogComponent } from './actor/actor-dialog/actor-dialog.component';
+import { ActorComponent } from './actor/actor.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { APP_ROUTE_PROVIDER } from './route.provider';
-import { ActorComponent } from './actor/actor.component';
-import { ActorDialogComponent } from './actor/actor-dialog/actor-dialog.component';
-import { SharedModule } from './shared/shared.module';
-import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
-import { FilmReviewsDialogComponent } from './film-reviews/film-reviews-dialog/film-reviews-dialog.component';
-import { FilmCastComponent } from './film-cast/film-cast.component';
 import { FilmCastDialogComponent } from './film-cast/film-cast-dialog/film-cast-dialog.component';
+import { FilmCastComponent } from './film-cast/film-cast.component';
+import { FilmReviewsDialogComponent } from './film-reviews/film-reviews-dialog/film-reviews-dialog.component';
+import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
+import { FilmSearchModule } from './film-search/film-search.module';
+import { APP_ROUTE_PROVIDER } from './route.provider';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { FilmCastDialogComponent } from './film-cast/film-cast-dialog/film-cast-
     ThemeLeptonXModule.forRoot(),
     SideMenuLayoutModule.forRoot(),
     SharedModule,
+    FilmSearchModule,
   ],
   declarations: [
     AppComponent,

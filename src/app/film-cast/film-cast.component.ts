@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListService, PagedResultDto } from '@abp/ng.core';
+import { CurrentUserDto, ListService, PagedResultDto } from '@abp/ng.core';
 import { FilmCastDto } from '@proxy/dto';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';

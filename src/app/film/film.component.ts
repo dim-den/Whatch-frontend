@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
 import { ListService, PagedResultDto } from '@abp/ng.core';
-import { FilmDto } from '@proxy/dto';
-import { FilmService } from '@proxy/services';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
-import { MatDialog } from '@angular/material/dialog';
-import { FilmDialogComponent } from './film-dialog';
+import { FilmDto } from '@proxy/dto';
 import { filmGenreOptions } from '@proxy/enums';
+import { FilmService } from '@proxy/services';
+import { FilmDialogComponent } from './film-dialog';
 
 @Component({
   selector: 'app-film',
@@ -19,6 +18,9 @@ export class FilmComponent implements OnInit {
   films: PagedResultDto<FilmDto> = { items: [], totalCount: 0 };
 
   filmGenres = filmGenreOptions;
+  getGenreName(genre: number): string {
+    return this.filmGenres.find(x => x.value == genre).key;
+  }
 
   columns: string[] = [
     'actions',
