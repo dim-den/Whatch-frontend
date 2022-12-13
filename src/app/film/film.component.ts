@@ -2,7 +2,6 @@ import { ListService, PagedResultDto } from '@abp/ng.core';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { Sort } from '@angular/material/sort';
 import { FilmDto } from '@proxy/dto';
 import { filmGenreOptions } from '@proxy/enums';
 import { FilmService } from '@proxy/services';
@@ -37,11 +36,6 @@ export class FilmComponent implements OnInit {
 
   changePage(pageEvent: PageEvent) {
     this.list.page = pageEvent.pageIndex;
-  }
-
-  changeSort(sort: Sort) {
-    this.list.sortKey = sort.active;
-    this.list.sortOrder = sort.direction;
   }
 
   constructor(

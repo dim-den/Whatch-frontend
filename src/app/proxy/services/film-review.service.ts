@@ -1,7 +1,7 @@
 import { RestService } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { FilmReviewDto, LeaveReviewDto } from '../dto/models';
+import type { CreateUpdateFilmReviewDto, FilmReviewDto, FilmReviewsInfoDto, GetFilmReviewDto, LeaveReviewDto, LeaveScoreDto } from '../dto/models';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class FilmReviewService {
   apiName = 'Default';
   
 
-  create = (input: LeaveReviewDto) =>
+  create = (input: CreateUpdateFilmReviewDto) =>
     this.restService.request<any, FilmReviewDto>({
       method: 'POST',
       url: '/api/app/film-review',
@@ -35,6 +35,15 @@ export class FilmReviewService {
     { apiName: this.apiName });
   
 
+  getFilmReviewsInfoByRequest = (request: GetFilmReviewDto) =>
+    this.restService.request<any, FilmReviewsInfoDto>({
+      method: 'GET',
+      url: '/api/app/film-review/film-reviews-info',
+      params: { filmId: request.filmId },
+    },
+    { apiName: this.apiName });
+  
+
   getList = (input: PagedAndSortedResultRequestDto) =>
     this.restService.request<any, PagedResultDto<FilmReviewDto>>({
       method: 'GET',
@@ -44,7 +53,25 @@ export class FilmReviewService {
     { apiName: this.apiName });
   
 
-  update = (id: number, input: LeaveReviewDto) =>
+  postLeaveReviewByRequest = (request: LeaveReviewDto) =>
+    this.restService.request<any, FilmReviewDto>({
+      method: 'POST',
+      url: '/api/app/film-review/leave-review',
+      body: request,
+    },
+    { apiName: this.apiName });
+  
+
+  postLeaveScoreByRequest = (request: LeaveScoreDto) =>
+    this.restService.request<any, FilmReviewDto>({
+      method: 'POST',
+      url: '/api/app/film-review/leave-score',
+      body: request,
+    },
+    { apiName: this.apiName });
+  
+
+  update = (id: number, input: CreateUpdateFilmReviewDto) =>
     this.restService.request<any, FilmReviewDto>({
       method: 'PUT',
       url: `/api/app/film-review/${id}`,

@@ -1,0 +1,19 @@
+<h2 mat-dialog-title style='min-width: 500px;'>{{ data?.review ? 'Leave': 'Update'}} review for title '{{data.title}}'</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="form-container">
+    <mat-form-field class="w-100">
+      <mat-label>{{'Score'}} </mat-label>
+      <input type="number" id="film-title" matInput formControlName="score">
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>{{'Review' }} </mat-label>
+      <textarea matInput rows="10" formControlName="review"  placeholder="Your opinion" required></textarea>
+
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign='space-between end'>
+  <button mat-button  mat-dialog-close>{{ 'Close' | abpLocalization }}</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]='form.invalid || !form.touched'> {{'Save' | abpLocalization}}</button>
+</mat-dialog-actions>

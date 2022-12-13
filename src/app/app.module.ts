@@ -10,6 +10,7 @@ import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { BaseUiExtensionsModule } from '@abp/ng.theme.shared/extensions';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
@@ -25,6 +26,7 @@ import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
 import { FilmSearchModule } from './film-search/film-search.module';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 import { SharedModule } from './shared/shared.module';
+import { LeaveReviewDialogComponent } from './film-page/leave-review-dialog/leave-review-dialog.component';
 
 @NgModule({
   imports: [
@@ -46,6 +48,7 @@ import { SharedModule } from './shared/shared.module';
     FilmSearchModule,
     BaseUiExtensionsModule,
     FlexLayoutModule,
+    MatTooltipModule,
   ],
   declarations: [
     AppComponent,
@@ -56,6 +59,7 @@ import { SharedModule } from './shared/shared.module';
     FilmCastComponent,
     FilmCastDialogComponent,
     FilmPageComponent,
+    LeaveReviewDialogComponent,
   ],
   providers: [APP_ROUTE_PROVIDER],
   bootstrap: [AppComponent],

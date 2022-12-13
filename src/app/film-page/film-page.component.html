@@ -52,3 +52,86 @@
     </div>
   </div>
 </div>
+
+<div class='card'>
+  <div class='card-body'>
+    <div fxLayout='column' fxLayoutGap='20px'>
+      <small class='text-muted'>Film score</small>
+      <div class='fa-lg' *ngIf='usersAvgScore'>
+        Users average score <big class='text-primary'>{{usersAvgScore | number: '1.2-2'}}</big>
+        ({{reviews?.reviews.length}} scores)
+      </div>
+
+      <div class='fa-lg' *ngIf='!usersAvgScore'>
+        No scores for this film
+      </div>
+      <div fxLayoutGap='5px'>
+        <button mat-icon-button color='primary' class='fa-3x' *ngFor='let ratingId of scoreArr;index as i'
+                [id]="'star_'+i"
+                (click)='onScoreClick(i+1)' [matTooltip]='ratingId' matTooltipPosition='above'>
+          <mat-icon class='fa-2x'>
+            {{showIcon(i)}}
+          </mat-icon>
+        </button>
+
+      </div>
+      <div class='fa-lg' *ngIf='currentUserScore'>
+        You rated <span class='body-2'>{{currentUserScore}}</span> / <span class='body-2'>10</span>
+      </div>
+      <div class='fa-lg' *ngIf='!currentUserScore && hasLoggedIn'>
+        Leave your score!
+      </div>
+      <div class='fa-lg' *ngIf='!hasLoggedIn'>
+        Login to leave your score!
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='card'>
+  <div class='card-body'>
+    <div fxLayout='column' fxLayoutGap='20px'>
+      <small class='text-muted'>Film cast</small>
+
+    </div>
+  </div>
+</div>
+
+<div class='card'>
+  <div class='card-body'>
+    <div fxLayout='column' fxLayoutGap='20px'>
+      <div fxLayoutAlign='space-between stretch' fxLayout='row'>
+        <small class='text-muted'>Film reviews</small>
+
+        <button *ngIf='hasLoggedIn' id='create' mat-raised-button color='primary' type='button' (click)='addFilmReview()'>
+          <div fxLayoutGap='10px' fxLayout='row' fxLayoutAlign='center center'>
+          <i class='fa fa-plus mr-1'></i>
+          <span>{{ this.reviews?.currentUserFilmReview ? 'Update review' : 'Add review' }}</span>
+          </div>
+        </button>
+
+        <button *ngIf='!hasLoggedIn' mat-raised-button color='primary' type='button' (click)='login()'>
+          <div fxLayoutGap='10px' fxLayout='row' fxLayoutAlign='center center'>
+            <i class='fa fa-plus mr-1'></i>
+            <span>Login to leave review</span>
+          </div>
+        </button>
+      </div>
+
+      <div fxLayout='row' fxLayoutGap='50px'>
+        <div class='card w-50 border-1' *ngFor='let review of reviewsWithText()'>
+          <div class='card-header bg-primary bg-opacity-50 text-dark text-lg-center' fxLayoutAlign='space-between stretch'>
+            <div> <big class='text-primary'>{{review.username}}</big> rating is {{review.score}}</div>
+
+            <div>{{review.creationTime | date: 'dd.MM.yyyy mm:hh'}} </div>
+          </div>
+          <div class='card-body bg-light text-dark' style='min-height: 200px'>
+            {{review.review}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -34,6 +34,13 @@ export interface CreateUpdateFilmDto {
   trailerUrl?: string;
 }
 
+export interface CreateUpdateFilmReviewDto {
+  filmId: number;
+  userId: string;
+  score: number;
+  review: string;
+}
+
 export interface FilmCastDto extends AuditedEntityDto<number> {
   roleName?: string;
   filmId: number;
@@ -59,11 +66,32 @@ export interface FilmReviewDto extends AuditedEntityDto<number> {
   userId?: string;
 }
 
-export interface LeaveReviewDto {
-  filmId: number;
-  userId: string;
+export interface FilmReviewInfoDto extends AuditedEntityDto<number> {
+  username?: string;
   score: number;
   review?: string;
+}
+
+export interface FilmReviewsInfoDto extends EntityDto {
+  avgScore: number;
+  currentUserFilmScore?: number;
+  currentUserFilmReview?: string;
+  reviews: FilmReviewInfoDto[];
+}
+
+export interface GetFilmReviewDto {
+  filmId: number;
+}
+
+export interface LeaveReviewDto {
+  filmId: number;
+  score: number;
+  review: string;
+}
+
+export interface LeaveScoreDto {
+  filmId: number;
+  score: number;
 }
 
 export interface SearchFilmDto extends PagedAndSortedResultRequestDto {
