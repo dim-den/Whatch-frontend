@@ -47,6 +47,10 @@ export interface FilmCastDto extends AuditedEntityDto<number> {
   actorId: number;
 }
 
+export interface FilmCastInfoDto extends ActorDto {
+  roleName?: string;
+}
+
 export interface FilmDto extends EntityDto<number> {
   title?: string;
   description?: string;
@@ -77,6 +81,14 @@ export interface FilmReviewsInfoDto extends EntityDto {
   currentUserFilmScore?: number;
   currentUserFilmReview?: string;
   reviews: FilmReviewInfoDto[];
+}
+
+export interface GetActorFilmsDto {
+  actorId: number;
+}
+
+export interface GetFilmCastDto {
+  filmId: number;
 }
 
 export interface GetFilmReviewDto {

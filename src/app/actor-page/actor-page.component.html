@@ -1,0 +1,53 @@
+<div class='card'>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-auto '>
+        <div class='pe-0 '>
+          <small class='text-muted'>Actor</small>
+
+          <div class='mt-2 description' fxLayout='column' fxLayoutGap='20px' style='min-width: 400px'>
+            <p class='mb-3' style='font-size: 35px'>{{actor?.name}} {{actor?.lastname}}</p>
+
+            <div fxLayout='row' fxLayoutAlign='space-between strecth'>
+              <mat-label class='text-decoration-underline'>Country</mat-label>
+              <span>{{actor?.country}}</span>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='space-between strecth'>
+              <mat-label class='text-decoration-underline'>Birthday</mat-label>
+              <span>{{actor?.birthday | date: 'dd.MM.YYYY'}} ({{getAge(actor?.birthday)}} y.o.)</span>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='space-between strecth'>
+              <mat-label class='text-decoration-underline'>Films total</mat-label>
+              <span>{{actorFilms?.length}}</span>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='card'>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-auto '>
+        <div class='pe-0 '>
+          <small class='text-muted'>Actor films</small>
+          <mat-nav-list>
+            <mat-list-item *ngFor="let film of actorFilms">
+              <a matListItemTitle [href]="'film/' + film.id" class='text-primary'>
+                <div>
+                  <big style='font-size: 25px'>{{film.title}} ({{film.releaseDate | date: 'YYYY'}} </big>
+                </div>
+              </a>
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,12 +2,12 @@ import { AuthService } from '@abp/ng.core';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { FilmDto, FilmReviewInfoDto, FilmReviewsInfoDto } from '@proxy/dto';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { FilmCastInfoDto, FilmDto, FilmReviewInfoDto, FilmReviewsInfoDto } from '@proxy/dto';
 import { filmGenreOptions } from '@proxy/enums';
-import { FilmReviewService, FilmService } from '@proxy/services';
+import { FilmCastService, FilmReviewService, FilmService } from '@proxy/services';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { tap } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 import { LeaveReviewDialogComponent } from './leave-review-dialog/leave-review-dialog.component';
 
 @Component({
@@ -18,8 +18,9 @@ import { LeaveReviewDialogComponent } from './leave-review-dialog/leave-review-d
 export class FilmPageComponent implements OnInit {
   film: FilmDto;
   reviews: FilmReviewsInfoDto;
+  cast: FilmCastInfoDto[];
 
-  usersAvgScore = 6.25;
+  usersAvgScore = null;
   currentUserScore: number = null;
 
   scoreArr: number[] = [...Array(10).keys()].map(x => x + 1);
@@ -31,7 +32,9 @@ export class FilmPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private filmService: FilmService,
+    private castService: FilmCastService,
     private reviewService: FilmReviewService,
     private sanitizer: DomSanitizer,
     private oAuthService: OAuthService,
@@ -54,9 +57,13 @@ export class FilmPageComponent implements OnInit {
   }
 
   load(id: any): void {
-    this.filmService.get(id).subscribe(x => (this.film = x));
+    this.filmService
+      .get(id)
+      .pipe(catchError(() => this.router.navigate([''])))
+      .subscribe(x => (this.film = x as FilmDto));
 
     this.loadReview(id);
+    this.loadFilmCast(id);
   }
 
   loadReview(filmId: number) {
@@ -64,6 +71,12 @@ export class FilmPageComponent implements OnInit {
       this.reviews = x;
       this.usersAvgScore = x.avgScore;
       this.currentUserScore = x.currentUserFilmScore;
+    });
+  }
+
+  loadFilmCast(filmId: number) {
+    this.castService.getFilmCastByRequest({ filmId }).subscribe(x => {
+      this.cast = x;
     });
   }
 
@@ -77,6 +90,17 @@ export class FilmPageComponent implements OnInit {
     } else {
       return 'star_border';
     }
+  }
+
+  getAge(bday: string) {
+    const birthday = new Date(bday);
+    const today = new Date();
+    let age = today.getFullYear() - birthday.getFullYear();
+    const m = today.getMonth() - birthday.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
+      age--;
+    }
+    return age;
   }
 
   addFilmReview() {

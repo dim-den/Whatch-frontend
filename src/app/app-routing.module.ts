@@ -1,6 +1,7 @@
 import { AuthGuard, PermissionGuard } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ActorPageComponent } from './actor-page/actor-page.component';
 import { ActorComponent } from './actor/actor.component';
 import { FilmCastComponent } from './film-cast/film-cast.component';
 import { FilmPageComponent } from './film-page/film-page.component';
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'film/:filmId',
     component: FilmPageComponent,
+  },
+  {
+    path: 'actor/:actorId',
+    component: ActorPageComponent,
   },
 ];
 

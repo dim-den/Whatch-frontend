@@ -10,10 +10,12 @@ import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { BaseUiExtensionsModule } from '@abp/ng.theme.shared/extensions';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
+import { ActorPageComponent } from './actor-page/actor-page.component';
 import { ActorDialogComponent } from './actor/actor-dialog/actor-dialog.component';
 import { ActorComponent } from './actor/actor.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,12 +23,12 @@ import { AppComponent } from './app.component';
 import { FilmCastDialogComponent } from './film-cast/film-cast-dialog/film-cast-dialog.component';
 import { FilmCastComponent } from './film-cast/film-cast.component';
 import { FilmPageComponent } from './film-page/film-page.component';
+import { LeaveReviewDialogComponent } from './film-page/leave-review-dialog/leave-review-dialog.component';
 import { FilmReviewsDialogComponent } from './film-reviews/film-reviews-dialog/film-reviews-dialog.component';
 import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
 import { FilmSearchModule } from './film-search/film-search.module';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 import { SharedModule } from './shared/shared.module';
-import { LeaveReviewDialogComponent } from './film-page/leave-review-dialog/leave-review-dialog.component';
 
 @NgModule({
   imports: [
@@ -49,6 +51,7 @@ import { LeaveReviewDialogComponent } from './film-page/leave-review-dialog/leav
     BaseUiExtensionsModule,
     FlexLayoutModule,
     MatTooltipModule,
+    MatListModule,
   ],
   declarations: [
     AppComponent,
@@ -60,6 +63,7 @@ import { LeaveReviewDialogComponent } from './film-page/leave-review-dialog/leav
     FilmCastDialogComponent,
     FilmPageComponent,
     LeaveReviewDialogComponent,
+    ActorPageComponent,
   ],
   providers: [APP_ROUTE_PROVIDER],
   bootstrap: [AppComponent],

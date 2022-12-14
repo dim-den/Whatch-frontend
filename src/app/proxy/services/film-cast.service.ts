@@ -1,7 +1,7 @@
 import { RestService } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { CreateUpdateFilmCastDto, FilmCastDto } from '../dto/models';
+import type { CreateUpdateFilmCastDto, FilmCastDto, FilmCastInfoDto, FilmDto, GetActorFilmsDto, GetFilmCastDto } from '../dto/models';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +31,24 @@ export class FilmCastService {
     this.restService.request<any, FilmCastDto>({
       method: 'GET',
       url: `/api/app/film-cast/${id}`,
+    },
+    { apiName: this.apiName });
+  
+
+  getActorFilmsByRequest = (request: GetActorFilmsDto) =>
+    this.restService.request<any, FilmDto[]>({
+      method: 'GET',
+      url: '/api/app/film-cast/actor-films',
+      params: { actorId: request.actorId },
+    },
+    { apiName: this.apiName });
+  
+
+  getFilmCastByRequest = (request: GetFilmCastDto) =>
+    this.restService.request<any, FilmCastInfoDto[]>({
+      method: 'GET',
+      url: '/api/app/film-cast/film-cast',
+      params: { filmId: request.filmId },
     },
     { apiName: this.apiName });
   
