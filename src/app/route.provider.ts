@@ -23,6 +23,14 @@ function configureRoutes(routesService: RoutesService) {
         requiredPolicy: 'Whatch.CRUD',
       },
       {
+        path: '/profile',
+        name: 'Profile',
+        iconClass: 'fas fa-user',
+        order: 3,
+        layout: eLayoutType.application,
+        requiredPolicy: 'Whatch.LeaveReview',
+      },
+      {
         path: '/films',
         name: 'Films',
         parentName: 'WhatchStructure',

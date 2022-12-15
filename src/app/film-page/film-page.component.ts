@@ -3,9 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { FilmCastInfoDto, FilmDto, FilmReviewInfoDto, FilmReviewsInfoDto } from '@proxy/dto';
+import {
+  FilmCastInfoDto,
+  FilmDto,
+  FilmReviewInfoDto,
+  FilmReviewsInfoDto,
+  UserWatchlistDto,
+} from '@proxy/dto';
 import { filmGenreOptions } from '@proxy/enums';
-import { FilmCastService, FilmReviewService, FilmService } from '@proxy/services';
+import { FilmCastService, FilmReviewService, FilmService, WatchlistService } from '@proxy/services';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { catchError, tap } from 'rxjs';
 import { LeaveReviewDialogComponent } from './leave-review-dialog/leave-review-dialog.component';
@@ -19,6 +25,7 @@ export class FilmPageComponent implements OnInit {
   film: FilmDto;
   reviews: FilmReviewsInfoDto;
   cast: FilmCastInfoDto[];
+  watchlist: UserWatchlistDto;
 
   usersAvgScore = null;
   currentUserScore: number = null;
@@ -36,6 +43,7 @@ export class FilmPageComponent implements OnInit {
     private filmService: FilmService,
     private castService: FilmCastService,
     private reviewService: FilmReviewService,
+    private watchlistService: WatchlistService,
     private sanitizer: DomSanitizer,
     private oAuthService: OAuthService,
     private authService: AuthService,
@@ -64,6 +72,7 @@ export class FilmPageComponent implements OnInit {
 
     this.loadReview(id);
     this.loadFilmCast(id);
+    this.loadWatchlist(id);
   }
 
   loadReview(filmId: number) {
@@ -77,6 +86,12 @@ export class FilmPageComponent implements OnInit {
   loadFilmCast(filmId: number) {
     this.castService.getFilmCastByRequest({ filmId }).subscribe(x => {
       this.cast = x;
+    });
+  }
+
+  loadWatchlist(filmId: number) {
+    this.watchlistService.getUserWatchlistForFilmByFilmId(filmId).subscribe(x => {
+      this.watchlist = x;
     });
   }
 
@@ -101,6 +116,13 @@ export class FilmPageComponent implements OnInit {
       age--;
     }
     return age;
+  }
+
+  addToWatchList() {
+    this.watchlistService
+      .postUpdateOrDeleteFromListByFilmId(this.film.id)
+      .pipe(tap(() => this.loadWatchlist(this.film.id)))
+      .subscribe();
   }
 
   addFilmReview() {

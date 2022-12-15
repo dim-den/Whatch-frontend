@@ -11,6 +11,8 @@ import { BaseUiExtensionsModule } from '@abp/ng.theme.shared/extensions';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +29,7 @@ import { LeaveReviewDialogComponent } from './film-page/leave-review-dialog/leav
 import { FilmReviewsDialogComponent } from './film-reviews/film-reviews-dialog/film-reviews-dialog.component';
 import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
 import { FilmSearchModule } from './film-search/film-search.module';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 import { SharedModule } from './shared/shared.module';
 
@@ -52,6 +55,8 @@ import { SharedModule } from './shared/shared.module';
     FlexLayoutModule,
     MatTooltipModule,
     MatListModule,
+    MatSortModule,
+    MatTableModule,
   ],
   declarations: [
     AppComponent,
@@ -64,6 +69,7 @@ import { SharedModule } from './shared/shared.module';
     FilmPageComponent,
     LeaveReviewDialogComponent,
     ActorPageComponent,
+    ProfilePageComponent,
   ],
   providers: [APP_ROUTE_PROVIDER],
   bootstrap: [AppComponent],

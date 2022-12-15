@@ -110,3 +110,13 @@ export interface SearchFilmDto extends PagedAndSortedResultRequestDto {
   key: string;
   filterBy: FilmFilterType;
 }
+
+export interface UserFilmReviewDto extends AuditedEntityDto<number> {
+  score: number;
+  review?: string;
+  film: FilmDto;
+}
+
+export interface UserWatchlistDto extends AuditedEntityDto<number> {
+  film: FilmDto;
+}

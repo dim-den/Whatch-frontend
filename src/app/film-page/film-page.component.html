@@ -4,43 +4,62 @@
 
       <div class='col-md-auto align-items-center' style='max-width: 700px'>
         <div class='pe-0 pe-md-4'>
-          <small class='text-muted'>Film</small>
-          <h1 class='mb-1 title mb-3 mt-3'>{{film?.title}}</h1>
-          <p class='mb-3 description'>{{film?.description}}</p>
+          <div fxLayoutAlign='space-between start' fxLayout='column' fxLayoutGap='100px'>
+            <div>
+              <small class='text-muted'>Film</small>
+              <h1 class='mb-1 title mb-3 mt-3'>{{film?.title}}</h1>
+              <p class='mb-3 description'>{{film?.description}}</p>
 
-          <div fxLayout='column' class='description' fxLayoutGap='15px'>
-            <div fxLayout='row' fxLayoutAlign='space-between end'>
-              <mat-label fxFlex class='text-decoration-underline'>Director</mat-label>
-              <span fxFlex>{{film?.director}}</span>
+              <div fxLayout='column' class='description' fxLayoutGap='15px'>
+                <div fxLayout='row' fxLayoutAlign='space-between end'>
+                  <mat-label fxFlex class='text-decoration-underline'>Director</mat-label>
+                  <span fxFlex>{{film?.director}}</span>
+                </div>
+
+                <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+                  <mat-label fxFlex class='text-decoration-underline'>Budget</mat-label>
+                  <span fxFlex>{{film?.budget | number: '2.'}}$</span>
+                </div>
+
+                <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+                  <mat-label fxFlex class='text-decoration-underline'>Fees</mat-label>
+                  <span fxFlex>{{film?.fees | number: '2.'}}$</span>
+                </div>
+
+                <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+                  <mat-label fxFlex class='text-decoration-underline'>Release Date</mat-label>
+                  <span fxFlex>{{film?.releaseDate | date: 'dd.MM.YYYY'}}</span>
+                </div>
+
+                <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+                  <mat-label fxFlex class='text-decoration-underline'>Country</mat-label>
+                  <span fxFlex>{{film?.country}}</span>
+                </div>
+
+                <div fxLayout='row' fxLayoutAlign='space-between stretch'>
+                  <mat-label fxFlex class='text-decoration-underline'>Genre</mat-label>
+                  <span fxFlex>{{getGenreName(film?.genre)}}</span>
+                </div>
+              </div>
             </div>
+            <div>
+              <button mat-raised-button color='warn' type='button' (click)='addToWatchList()'
+                      *ngIf='hasLoggedIn && watchlist'>
+                <div fxLayoutGap='10px'>
+                  <i class='fa fa-minus mr-1'></i>
+                  <span>Remove from watchlist</span>
+                </div>
+              </button>
 
-            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
-              <mat-label fxFlex class='text-decoration-underline'>Budget</mat-label>
-              <span fxFlex>{{film?.budget | number: '2.'}}$</span>
-            </div>
-
-            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
-              <mat-label fxFlex class='text-decoration-underline'>Fees</mat-label>
-              <span fxFlex>{{film?.fees | number: '2.'}}$</span>
-            </div>
-
-            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
-              <mat-label fxFlex class='text-decoration-underline'>Release Date</mat-label>
-              <span fxFlex>{{film?.releaseDate | date: 'dd.MM.YYYY'}}</span>
-            </div>
-
-            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
-              <mat-label fxFlex class='text-decoration-underline'>Country</mat-label>
-              <span fxFlex>{{film?.country}}</span>
-            </div>
-
-            <div fxLayout='row' fxLayoutAlign='space-between stretch'>
-              <mat-label fxFlex class='text-decoration-underline'>Genre</mat-label>
-              <span fxFlex>{{getGenreName(film?.genre)}}</span>
+              <button mat-raised-button color='primary' class='bg-success' type='button' (click)='addToWatchList()'
+                      *ngIf='hasLoggedIn && !watchlist'>
+                <div fxLayoutGap='10px'>
+                  <i class='fa fa-plus mr-1'></i>
+                  <span>Add to watchlist</span>
+                </div>
+              </button>
             </div>
           </div>
-
-
         </div>
       </div>
 
@@ -50,6 +69,7 @@
         </iframe>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -93,15 +113,13 @@
     <div fxLayout='column' fxLayoutGap='20px'>
       <small class='text-muted'>Film cast</small>
       <mat-nav-list>
-        <mat-list-item *ngFor="let actor of cast">
-          <a matListItemTitle [href]="'actor/' + actor.id" class='text-primary'>
+        <mat-list-item *ngFor='let actor of cast'>
+          <a matListItemTitle [href]="'actor/' + actor.id" >
             <div>
-              <big style='font-size: 25px'>{{actor.roleName}} - {{actor.name}} {{actor.lastname}}</big> ({{actor.country}}, {{getAge(actor.birthday)}} y.o.)
+              <big style='font-size: 25px'><span class='text-primary'>{{actor.roleName}}</span> - {{actor.name}} {{actor.lastname}}</big>
+              ({{actor.country}}, {{getAge(actor.birthday)}} y.o.)
             </div>
           </a>
-          <button mat-icon-button matListItemMeta>
-            <mat-icon>info</mat-icon>
-          </button>
         </mat-list-item>
       </mat-nav-list>
 
@@ -119,10 +137,11 @@
       <div fxLayoutAlign='space-between stretch' fxLayout='row'>
         <small class='text-muted'>Film reviews</small>
 
-        <button *ngIf='hasLoggedIn' id='create' mat-raised-button color='primary' type='button' (click)='addFilmReview()'>
+        <button *ngIf='hasLoggedIn' id='create' mat-raised-button color='primary' type='button'
+                (click)='addFilmReview()'>
           <div fxLayoutGap='10px' fxLayout='row' fxLayoutAlign='center center'>
-          <i class='fa fa-plus mr-1'></i>
-          <span>{{ this.reviews?.currentUserFilmReview ? 'Update review' : 'Add review' }}</span>
+            <i class='fa fa-plus mr-1'></i>
+            <span>{{ this.reviews?.currentUserFilmReview ? 'Update review' : 'Add review' }}</span>
           </div>
         </button>
 
@@ -136,8 +155,9 @@
 
       <div fxLayout='row' fxLayoutGap='50px'>
         <div class='card w-50 border-1' *ngFor='let review of reviewsWithText()'>
-          <div class='card-header bg-primary bg-opacity-50 text-dark text-lg-center' fxLayoutAlign='space-between stretch'>
-            <div> <big class='text-primary'>{{review.username}}</big> rating is {{review.score}}</div>
+          <div class='card-header bg-primary bg-opacity-50 text-dark text-lg-center'
+               fxLayoutAlign='space-between stretch'>
+            <div><big class='text-primary'>{{review.username}}</big> rating is {{review.score}}</div>
 
             <div>{{review.creationTime | date: 'dd.MM.yyyy mm:hh'}} </div>
           </div>

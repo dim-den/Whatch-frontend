@@ -6,6 +6,7 @@ export interface LeaveReviewDialog {
   score: number;
   review: string;
   title: string;
+  reviewOptionable?: boolean;
 }
 
 @Component({
@@ -28,7 +29,9 @@ export class LeaveReviewDialogComponent implements OnInit {
       score: [this.data?.score, [Validators.required, Validators.min(1), Validators.max(10)]],
       review: [
         this.data?.review,
-        [Validators.required, Validators.minLength(10), Validators.maxLength(2048)],
+        this.data?.reviewOptionable
+          ? []
+          : [Validators.required, Validators.minLength(10), Validators.maxLength(2048)],
       ],
     });
   }

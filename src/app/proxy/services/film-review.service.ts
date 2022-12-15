@@ -1,7 +1,7 @@
 import { RestService } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { CreateUpdateFilmReviewDto, FilmReviewDto, FilmReviewsInfoDto, GetFilmReviewDto, LeaveReviewDto, LeaveScoreDto } from '../dto/models';
+import type { CreateUpdateFilmReviewDto, FilmReviewDto, FilmReviewsInfoDto, GetFilmReviewDto, LeaveReviewDto, LeaveScoreDto, UserFilmReviewDto } from '../dto/models';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +31,14 @@ export class FilmReviewService {
     this.restService.request<any, FilmReviewDto>({
       method: 'GET',
       url: `/api/app/film-review/${id}`,
+    },
+    { apiName: this.apiName });
+  
+
+  getCurrentUserFilmReview = () =>
+    this.restService.request<any, UserFilmReviewDto[]>({
+      method: 'GET',
+      url: '/api/app/film-review/current-user-film-review',
     },
     { apiName: this.apiName });
   

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title style='min-width: 500px;'>{{ data?.review ? 'Leave': 'Update'}} review for title '{{data.title}}'</h2>
+<h2 mat-dialog-title style='min-width: 500px;'>{{ data?.review ? 'Update': 'Leave'}} review for title '{{data.title}}'</h2>
 <mat-dialog-content>
   <form [formGroup]="form" class="form-container">
     <mat-form-field class="w-100">
@@ -8,7 +8,7 @@
 
     <mat-form-field class="w-100">
       <mat-label>{{'Review' }} </mat-label>
-      <textarea matInput rows="10" formControlName="review"  placeholder="Your opinion" required></textarea>
+      <textarea matInput rows="10" formControlName="review"  placeholder="Your opinion"></textarea>
 
     </mat-form-field>
   </form>

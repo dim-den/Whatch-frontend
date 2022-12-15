@@ -6,6 +6,7 @@ import { ActorComponent } from './actor/actor.component';
 import { FilmCastComponent } from './film-cast/film-cast.component';
 import { FilmPageComponent } from './film-page/film-page.component';
 import { FilmReviewsComponent } from './film-reviews/film-reviews.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,11 @@ const routes: Routes = [
   {
     path: 'actor/:actorId',
     component: ActorPageComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfilePageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
   },
 ];
 
