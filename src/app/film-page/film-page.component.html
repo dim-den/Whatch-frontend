@@ -113,11 +113,11 @@
     <div fxLayout='column' fxLayoutGap='20px'>
       <small class='text-muted'>Film cast</small>
       <mat-nav-list>
-        <mat-list-item *ngFor='let actor of cast'>
-          <a matListItemTitle [href]="'actor/' + actor.id" >
+        <mat-list-item *ngFor='let item of cast'>
+          <a matListItemTitle [href]="'actor/' + item.actor.id" >
             <div>
-              <big style='font-size: 25px'><span class='text-primary'>{{actor.roleName}}</span> - {{actor.name}} {{actor.lastname}}</big>
-              ({{actor.country}}, {{getAge(actor.birthday)}} y.o.)
+              <big style='font-size: 25px'><span class='text-primary'>{{item.roleName}}</span> - {{item.actor.name}} {{item.actor.lastname}}</big>
+              ({{item.actor.country}}, {{getAge(item.actor.birthday)}} y.o.)
             </div>
           </a>
         </mat-list-item>

@@ -2,9 +2,9 @@ import { ConfigStateService } from '@abp/ng.core';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
-import { UserFilmReviewDto, UserWatchlistDto } from '@proxy/dto';
+import { FilmWithScoreDto, UserFilmReviewDto, UserWatchlistDto } from '@proxy/dto';
 import { filmGenreOptions } from '@proxy/enums';
-import { FilmReviewService, WatchlistService } from '@proxy/services';
+import { FilmReviewService, FilmService, WatchlistService } from '@proxy/services';
 import { tap } from 'rxjs';
 import { LeaveReviewDialogComponent } from '../film-page/leave-review-dialog/leave-review-dialog.component';
 
@@ -18,6 +18,7 @@ export class ProfilePageComponent {
   user;
   filmReviews: UserFilmReviewDto[] = [];
   sortedFilmReviews: UserFilmReviewDto[];
+  recommendations: FilmWithScoreDto[];
 
   filmReviewColumns: string[] = ['title', 'genre', 'score', 'creationTime', 'actions'];
   filmGenres = filmGenreOptions;
@@ -33,6 +34,7 @@ export class ProfilePageComponent {
   constructor(
     private watchlistService: WatchlistService,
     private filmReviewService: FilmReviewService,
+    private filmService: FilmService,
     private configState: ConfigStateService,
     public dialog: MatDialog
   ) {
@@ -42,6 +44,7 @@ export class ProfilePageComponent {
       this.filmReviews = x;
       this.sortedFilmReviews = x;
     });
+    this.filmService.getUserRecommendationFilms().subscribe(x => (this.recommendations = x));
   }
 
   removeFromWatchList(filmId) {

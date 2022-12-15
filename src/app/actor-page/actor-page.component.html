@@ -41,7 +41,7 @@
             <mat-list-item *ngFor="let film of actorFilms">
               <a matListItemTitle [href]="'film/' + film.id" class='text-primary'>
                 <div>
-                  <big style='font-size: 25px'>{{film.title}} ({{film.releaseDate | date: 'YYYY'}} </big>
+                  <big style='font-size: 25px'>{{film.title}} ({{film.releaseDate | date: 'YYYY'}})</big>
                 </div>
               </a>
             </mat-list-item>

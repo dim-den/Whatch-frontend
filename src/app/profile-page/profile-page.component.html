@@ -60,6 +60,43 @@
   </div>
 </div>
 
+<div class='card'>
+  <div class='card-body'>
+    <div class='row'>
+      <small class='text-muted'>Recommendations to watch base on your previous scores</small>
+
+      <mat-nav-list>
+        <mat-list-item *ngFor='let item of recommendations'>
+          <div fxLayoutAlign='space-between center' fxLayout='row' fxFlexFill>
+            <a matListItemTitle [href]="'film/' + item.id">
+              <div>
+                <big style='font-size: 20px'><span class='text-dark'>{{item.title}}</span></big>
+              </div>
+            </a>
+
+            <div fxFlex='50' fxLayoutAlign='space-between center' fxLayout='row'>
+
+              <div style='font-size: 20px'>
+                {{getGenreName(item.genre)}}
+              </div>
+
+              <div>
+                {{item.avgScore}}
+              </div>
+            </div>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+
+      <div *ngIf='wacthlist?.length === 0' style='font-size: 20px'>
+        Watchlist is empty
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
 <mat-card>
   <mat-card-content>
     <small class='text-muted'>Scores</small>
@@ -74,7 +111,7 @@
       </ng-container>
 
       <ng-container matColumnDef="genre">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Film'}} </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Genre'}} </th>
         <td mat-cell *matCellDef="let element"> {{getGenreName(element.film.genre)}} </td>
       </ng-container>
 

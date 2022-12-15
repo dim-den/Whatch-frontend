@@ -72,7 +72,7 @@ export class FilmPageComponent implements OnInit {
 
     this.loadReview(id);
     this.loadFilmCast(id);
-    this.loadWatchlist(id);
+    this.hasLoggedIn && this.loadWatchlist(id);
   }
 
   loadReview(filmId: number) {
@@ -90,9 +90,10 @@ export class FilmPageComponent implements OnInit {
   }
 
   loadWatchlist(filmId: number) {
-    this.watchlistService.getUserWatchlistForFilmByFilmId(filmId).subscribe(x => {
-      this.watchlist = x;
-    });
+    this.hasLoggedIn &&
+      this.watchlistService.getUserWatchlistForFilmByFilmId(filmId).subscribe(x => {
+        this.watchlist = x;
+      });
   }
 
   reviewsWithText(): FilmReviewInfoDto[] {
