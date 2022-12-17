@@ -10,7 +10,9 @@
         *ngFor='let film of films$ | async'
         [value]='film.title'
       >
-        <a class='link-primary' style='text-decoration: none' [href]="'film/' + film.id">{{ film.title }} - {{ getGenreName(film.genre)}} ({{ film.releaseDate | date: 'YYYY' }})</a>
+        <a class='link-primary' style='text-decoration: none' [href]="'film/' + film.id">
+          {{getFilmDescription(film) | short: 65}}
+        </a>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

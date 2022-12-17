@@ -84,6 +84,15 @@ export interface FilmReviewsInfoDto extends EntityDto {
   reviews: FilmReviewInfoDto[];
 }
 
+export interface FilmSearchDto extends EntityDto<number> {
+  title?: string;
+  director?: string;
+  releaseDate?: string;
+  country?: string;
+  genre: FilmGenre;
+  actors: ActorDto[];
+}
+
 export interface FilmWithScoreDto extends FilmDto {
   avgScore?: number;
 }

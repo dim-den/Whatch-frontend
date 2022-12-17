@@ -81,15 +81,15 @@
               </div>
 
               <div>
-                {{item.avgScore}}
+                {{item.avgScore}} / 10
               </div>
             </div>
           </div>
         </mat-list-item>
       </mat-nav-list>
 
-      <div *ngIf='wacthlist?.length === 0' style='font-size: 20px'>
-        Watchlist is empty
+      <div *ngIf='recommendations?.length === 0' style='font-size: 20px'>
+        No recommendations for you
       </div>
 
 

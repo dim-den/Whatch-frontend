@@ -1,7 +1,7 @@
 import { PagedResultDto } from '@abp/ng.core';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { FilmDto } from '@proxy/dto';
+import { FilmSearchDto } from '@proxy/dto';
 import { FilmFilterType, filmGenreOptions } from '@proxy/enums';
 import { SearchService } from '@proxy/services';
 import { debounceTime, filter, Observable, Subject, switchMap, tap } from 'rxjs';
@@ -12,7 +12,7 @@ import { debounceTime, filter, Observable, Subject, switchMap, tap } from 'rxjs'
   styleUrls: ['./film-search.component.scss'],
 })
 export class FilmSearchComponent {
-  films$: Subject<FilmDto[]> = new Subject<FilmDto[]>();
+  films$: Subject<FilmSearchDto[]> = new Subject<FilmSearchDto[]>();
   filterCtrl: FormControl<string>;
   filterByCtrl: FormControl<FilmFilterType>;
 
@@ -61,13 +61,24 @@ export class FilmSearchComponent {
       .subscribe();
   }
 
+  public getFilmDescription(film: FilmSearchDto): string {
+    let res = `${film.title} - ${this.getGenreName(film.genre)} (${new Date(
+      film.releaseDate
+    ).getFullYear()}`;
+
+    film?.actors.forEach(a => (res += `, ${a.name} ${a.lastname}`));
+
+    res += ')';
+    return res;
+  }
+
   private searchByFilters(
     key: string,
     filterBy: FilmFilterType,
     maxResultCount = 5
-  ): Observable<PagedResultDto<FilmDto>> {
+  ): Observable<PagedResultDto<FilmSearchDto>> {
     return this.searchService.getSearchFilmByRequest({
-      maxResultCount: 5,
+      maxResultCount,
       key,
       filterBy,
     });
