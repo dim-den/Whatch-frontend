@@ -24,10 +24,10 @@ export class FilmSearchComponent {
   }
 
   filterOptions: { value: FilmFilterType; viewValue: string }[] = [
-    { value: FilmFilterType.AllFields, viewValue: 'All fields' },
-    { value: FilmFilterType.ByTitle, viewValue: 'Title' },
-    { value: FilmFilterType.ByActor, viewValue: 'Actor' },
-    { value: FilmFilterType.ByGenre, viewValue: 'Genre' },
+    { value: FilmFilterType.AllFields, viewValue: '::AllFields' },
+    { value: FilmFilterType.ByTitle, viewValue: '::Title' },
+    { value: FilmFilterType.ByActor, viewValue: '::Actor' },
+    { value: FilmFilterType.ByGenre, viewValue: '::Genre' },
   ];
 
   constructor(private fb: FormBuilder, private searchService: SearchService) {

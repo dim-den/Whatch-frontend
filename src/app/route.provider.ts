@@ -24,7 +24,7 @@ function configureRoutes(routesService: RoutesService) {
       },
       {
         path: '/profile',
-        name: 'Profile',
+        name: '::Profile',
         iconClass: 'fas fa-user',
         order: 3,
         layout: eLayoutType.application,
