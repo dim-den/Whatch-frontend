@@ -10,6 +10,7 @@ import { debounceTime, filter, Observable, Subject, switchMap, tap } from 'rxjs'
   selector: 'app-film-search',
   templateUrl: './film-search.component.html',
   styleUrls: ['./film-search.component.scss'],
+  providers: [SearchService],
 })
 export class FilmSearchComponent {
   films$: Subject<FilmSearchDto[]> = new Subject<FilmSearchDto[]>();
@@ -75,7 +76,7 @@ export class FilmSearchComponent {
   private searchByFilters(
     key: string,
     filterBy: FilmFilterType,
-    maxResultCount = 5
+    maxResultCount = 500
   ): Observable<PagedResultDto<FilmSearchDto>> {
     return this.searchService.getSearchFilmByRequest({
       maxResultCount,

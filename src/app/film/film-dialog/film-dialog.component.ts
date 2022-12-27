@@ -1,8 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FilmGenre, filmGenreOptions } from '@proxy/enums';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FilmDto } from '@proxy/dto';
+import { filmGenreOptions } from '@proxy/enums';
 
 @Component({
   selector: 'app-film-dialog',
@@ -31,7 +38,20 @@ export class FilmDialogComponent implements OnInit {
       releaseDate: [this.data?.releaseDate, Validators.required],
       country: [this.data?.country, Validators.required],
       genre: [this.data?.genre, Validators.required],
-      trailerUrl: [this.data?.trailerUrl],
+      trailerUrl: [this.data?.trailerUrl, this.youtubeValidator()],
     });
+  }
+
+  youtubeValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value as string;
+      if (!value) {
+        return null;
+      }
+
+      return value.startsWith('https://www.youtube.com/embed/')
+        ? null
+        : { wrongUrl: 'Not valid youtube video link' };
+    };
   }
 }

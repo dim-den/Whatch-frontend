@@ -96,7 +96,8 @@
 
       </div>
       <div class='fa-lg' *ngIf='currentUserScore'>
-        {{'::YourRating' | abpLocalization}} <span class='body-2'>{{currentUserScore}}</span> / <span class='body-2'>10</span>
+        {{'::YourRating' | abpLocalization}} <span class='body-2'>{{currentUserScore}}</span> / <span
+        class='body-2'>10</span>
       </div>
       <div class='fa-lg' *ngIf='!currentUserScore && hasLoggedIn'>
         Leave your score!
@@ -114,9 +115,10 @@
       <small class='text-muted'>{{'::FilmCast'| abpLocalization}}</small>
       <mat-nav-list>
         <mat-list-item *ngFor='let item of cast'>
-          <a matListItemTitle [href]="'actor/' + item.actor.id" >
+          <a matListItemTitle [href]="'actor/' + item.actor.id">
             <div>
-              <big style='font-size: 25px'><span class='text-primary'>{{item.roleName}}</span> - {{item.actor.name}} {{item.actor.lastname}}</big>
+              <big style='font-size: 25px'><span class='text-primary'>{{item.roleName}}</span>
+                - {{item.actor.name}} {{item.actor.lastname}}</big>
               ({{item.actor.country}}, {{getAge(item.actor.birthday)}} y.o.)
             </div>
           </a>
@@ -153,16 +155,18 @@
         </button>
       </div>
 
-      <div fxLayout='row' fxLayoutGap='50px'>
-        <div class='card w-50 border-1' *ngFor='let review of reviewsWithText()'>
-          <div class='card-header bg-primary bg-opacity-50 text-dark text-lg-center'
-               fxLayoutAlign='space-between stretch'>
-            <div><big class='text-primary'>{{review.username}}</big> rating is {{review.score}}</div>
+      <div fxLayout='row' >
+        <div class='reviews' fxLayoutGap='50px' *ngIf='reviewsWithText().length > 0'>
+          <div class='card border-1 min-width-400' *ngFor='let review of reviewsWithText()'>
+            <div class='card-header bg-primary bg-opacity-50 text-dark text-lg-center'
+                 fxLayoutAlign='space-between stretch'>
+              <div><big class='text-primary'>{{review.username}}</big> rating is {{review.score}}</div>
 
-            <div>{{review.creationTime | date: 'dd.MM.yyyy hh:mm'}} </div>
-          </div>
-          <div class='card-body bg-light text-dark' style='min-height: 200px'>
-            {{review.review}}
+              <div>{{review.creationTime | date: 'dd.MM.yyyy hh:mm'}} </div>
+            </div>
+            <div class='card-body bg-light text-dark' style='min-height: 200px'>
+              {{review.review}}
+            </div>
           </div>
         </div>
 

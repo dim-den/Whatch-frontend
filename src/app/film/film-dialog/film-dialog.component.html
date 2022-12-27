@@ -49,6 +49,9 @@
     <mat-form-field class="w-100">
       <mat-label>{{'Trailer Url' | abpLocalization}} </mat-label>
       <input type="text" id="genre-trailerUrl" matInput formControlName="trailerUrl">
+      <mat-error>
+        {{'Not valid youtube url, format: https://www.youtube.com/embed/#video_id#'}}
+      </mat-error>
     </mat-form-field>
   </form>
 
